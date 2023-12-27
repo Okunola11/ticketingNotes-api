@@ -29,7 +29,3 @@ const logger = (req, res, next) => {
 };
 
 module.exports = { logger, logEvents };
-
-console.log(format(new Date(), "yyyyMMdd\tHH:mm:ss"));
-
-console.log(uuid());

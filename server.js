@@ -1,15 +1,28 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3500;
 const path = require("path");
+const cors = require("cors");
 const { logger } = require("./middleware/logEvents");
-const { errorHandler } = require("./middleware/errorHandler");
+const errorHandler = require("./middleware/errorHandler");
+const cookieParser = require("cookie-parser");
+const corsOptions = require("./config/corsOptions");
+const credentials = require("./middleware/credentials");
+const PORT = process.env.PORT || 3500;
 
 // middleware to log requests
 app.use(logger);
 
+// middlewear to handle credential check before cors
+app.use(credentials);
+
+// cross origin resource sharing
+app.use(cors(corsOptions));
+
 // middleware to process json data
 app.use(express.json());
+
+// middleware for cookies
+app.use(cookieParser());
 
 // middleware to access static files
 app.use("/", express.static(path.join(__dirname, "public")));
