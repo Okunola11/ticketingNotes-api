@@ -32,6 +32,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 //routes
 app.use("/", require("./routes/root"));
 app.use("/users", require("./routes/userRoutes"));
+app.use("/notes", require("./routes/notesRoutes"));
 
 // any page or request not found. app.all() accepts and applies to all http methods at once
 app.all("*", (req, res) => {

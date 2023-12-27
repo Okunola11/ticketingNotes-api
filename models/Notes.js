@@ -29,8 +29,7 @@ const noteSchema = new mongoose.Schema(
 
 noteSchema.plugin(AutoIncrement, {
   //this plugin creates a separate counter collection where it insert and tracks sequential number into our notes
-  id: "ticketNums",
-  inc_field: "ticket",
+  inc_field: "id",
   start_seq: 500,
 });
 
