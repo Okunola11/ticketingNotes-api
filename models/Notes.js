@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 //const Schema = mongoose.Schema;
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-const noteSchema = new Schema(
+const noteSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -10,11 +10,11 @@ const noteSchema = new Schema(
       ref: "User",
     },
     title: {
-      type: string,
+      type: String,
       required: true,
     },
     text: {
-      type: string,
+      type: String,
       required: true,
     },
     completed: {

@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 //const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   username: {
-    type: string,
+    type: String,
     required: true,
   },
   roles: [
     {
-      type: string,
+      type: String,
       default: "Employee",
     },
   ],
@@ -17,7 +17,7 @@ const userSchema = new Schema({
     default: true,
   },
   password: {
-    type: string,
+    type: String,
     required: true,
   },
 });
