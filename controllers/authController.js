@@ -11,7 +11,7 @@ const handleLogin = asyncHandler(async (req, res) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json({ message: "Username and Password are requiredd" });
+      .json({ message: "Username and Password are required" });
   }
   const findUser = await User.findOne({ username }).exec();
   if (!findUser) {
@@ -74,8 +74,14 @@ const handleRefreshToken = (req, res) => {
 
       if (!findUser) return res.status(401).json({ messsage: "Unauthorized" });
 
+      const roles = findUser.roles;
       const accessToken = jwt.sign(
-        { "username": findUser.username },
+        {
+          "UserInfo": {
+            "username": findUser.username,
+            "roles": roles,
+          },
+        },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: "10s" }
       );
