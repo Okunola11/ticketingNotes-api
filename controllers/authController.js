@@ -15,7 +15,7 @@ const handleLogin = asyncHandler(async (req, res) => {
   }
   const findUser = await User.findOne({ username }).exec();
   if (!findUser) {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "Unauthorizeds" });
   }
   const match = await bcrypt.compare(password, findUser.password);
   if (match) {
@@ -50,7 +50,7 @@ const handleLogin = asyncHandler(async (req, res) => {
     // send only access token containing username and roles
     res.json({ accessToken });
   } else {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 });
 
