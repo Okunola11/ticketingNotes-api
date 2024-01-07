@@ -5,7 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const { logger, logEvents } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const verifyJWT = require("./middleware/verifyJWT");
+const verify = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
 const corsOptions = require("./config/corsOptions");
 const connectDB = require("./config/dbConn");
@@ -34,7 +34,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
 app.use("/auth", require("./routes/authRoutes"));
 
-app.use(verifyJWT);
+app.use(verify);
 app.use("/users", require("./routes/userRoutes"));
 app.use("/notes", require("./routes/notesRoutes"));
 
