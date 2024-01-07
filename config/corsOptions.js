@@ -13,3 +13,5 @@ const corsOptions = {
 };
 
 module.exports = corsOptions;
+
+// it is important to remove '!origin' for customer deployment. That makes the application accessible by services with no origin e.g postman or any other originating from the desktop
