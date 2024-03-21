@@ -15,7 +15,7 @@ const handleLogin = asyncHandler(async (req, res) => {
   }
   const findUser = await User.findOne({ username }).exec();
   if (!findUser) {
-    return res.status(401).json({ message: "Unauthorizeds" });
+    return res.status(401).json({ message: "Unauthorized" });
   }
   const match = await bcrypt.compare(password, findUser.password);
   if (match) {
